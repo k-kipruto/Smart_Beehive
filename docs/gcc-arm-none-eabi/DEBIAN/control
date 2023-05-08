@@ -1,5 +1,0 @@
-Package: gcc-arm-none-eabi
-Version: 10.3-2021.10
-Architecture: amd64
-Maintainer: maintainer
-Description: Arm Embedded toolchain

@@ -4,11 +4,10 @@
 
 VER=${VER:-'10.3-2021.10'}
 
-    # https://developer.arm.com/-/media/Files/downloads/gnu-rm/10.3-2021.10/gcc-arm-none-eabi-10.3-2021.10-x86_64-linux.tar.bz2
 URL=https://developer.arm.com/-/media/Files/downloads/gnu-rm/${VER}/gcc-arm-none-eabi-${VER}-x86_64-linux.tar.bz2
-# URL=https://developer.arm.com/-/media/Files/downloads/gnu/${VER}/binrel/gcc-arm-${VER}-x86_64-arm-none-eabi.tar.xz
 
-
+mkdir .build-gcc-arm
+cd .build-gcc-arm
 echo "Creating gcc-arm-none-eabi x86_64 debian package" 
 echo "version: $VER"
 
@@ -35,10 +34,13 @@ mv tmp/gcc-arm-*/* gcc-arm-none-eabi/usr/
 dpkg-deb --build --root-owner-group gcc-arm-none-eabi
 
 # echo "Installing..."
+# echo "requires root access to install the Toolchain"
 # sudo apt install ./gcc-arm-none-eabi.deb -y --allow-downgrades
 
-mv "gcc-arm-none-eabi.deb" "gcc-arm-none-eabi-${VER}-x86_64.deb"
-ls -l *.deb
+# mv "gcc-arm-none-eabi.deb" "gcc-arm-none-eabi-${VER}-x86_64.deb"
+# ls -l *.deb
+# echo "Removing temporary files..."
+# rm -r gcc-arm-none-eabi*
 
-echo "Done."
+# echo "Done."
 
