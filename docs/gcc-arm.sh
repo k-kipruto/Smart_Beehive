@@ -4,8 +4,8 @@
 
 VER=${VER:-'10.3-2021.10'}
 
-#URL=https://developer.arm.com/-/media/Files/downloads/gnu-rm/${VER}/gcc-arm-none-eabi-${VER}-x86_64-linux.tar.bz2
-URL=https://developer.arm.com/-/media/Files/downloads/gnu/${VER}/binrel/gcc-arm-${VER}-x86_64-arm-none-eabi.tar.xz
+URL=https://developer.arm.com/-/media/Files/downloads/gnu-rm/${VER}/gcc-arm-none-eabi-${VER}-x86_64-linux.tar.bz2
+# URL=https://developer.arm.com/-/media/Files/downloads/gnu/${VER}/binrel/gcc-arm-${VER}-x86_64-arm-none-eabi.tar.xz
 
 echo "Creating gcc-arm-none-eabi x86_64 debian package" 
 echo "version: $VER"
