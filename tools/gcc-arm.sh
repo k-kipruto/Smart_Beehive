@@ -19,7 +19,9 @@ mkdir tmp
 pushd tmp
 tar -xf ../gcc-arm-none-eabi.tar
 popd
-rm gcc-arm-none-eabi.tar
+
+
+# rm gcc-arm-none-eabi.tar
 
 echo "Generating debian package..."
 mkdir gcc-arm-none-eabi

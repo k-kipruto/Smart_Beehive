@@ -1,23 +1,28 @@
 #!/bin/bash
-# https://askubuntu.com/a/1371525
-# https://developer.arm.com/downloads/-/gnu-rm
+# https://github.com/xpack-dev-tools/riscv-none-elf-gcc-xpack/releases
 VER=${VER:-'12.2.0-3'}
 
 mkdir .build-gcc-riscv
 cd .build-gcc-riscv
 echo "Creating gcc-riscv-none-elf x86_64 debian package" 
 
-echo "Downloading..."
+FILE_NAME="riscv-none-elf-gcc-linux-x64.tar.gz"
 
-curl -fSL -A "Mozilla/4.0" -o riscv-none-elf-gcc-linux-x64.tar.gz $(curl -s https://api.github.com/repos/xpack-dev-tools/riscv-none-elf-gcc-xpack/releases/latest | grep "browser_download_url.*linux-x64.tar.gz" | cut -d : -f 2,3 | tr -d \")
-
+if [ -f "$FILE_NAME" ]; then
+  echo "File already exists. Skipping download."
+else
+  echo "Downloading..."
+  DOWNLOAD_URL=$(curl -s https://api.github.com/repos/xpack-dev-tools/riscv-none-elf-gcc-xpack/releases/latest | grep "browser_download_url.*linux-x64.tar.gz" | cut -d : -f 2,3 | tr -d \")
+  curl -C - -fSL -A "Mozilla/4.0" -o "$FILE_NAME" "$DOWNLOAD_URL"
+fi
 
 echo "Extracting..."
 mkdir tmp
 pushd tmp
-tar -xzf ../riscv-none-elf-gcc-linux-x64.tar.gz
+tar -xzf "../$FILE_NAME"
+mv "xpack-riscv-none-elf-gcc-*" "riscv-none-elf-gcc"
 popd
-rm riscv-none-elf-gcc-linux-x64.tar.gz
+# rm riscv-none-elf-gcc-linux-x64.tar.gz
 
 echo "Generating debian package..."
 mkdir riscv-none-elf-gcc
