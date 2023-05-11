@@ -10,14 +10,7 @@ mkdir .build-gcc-arm
 cd .build-gcc-arm
 echo "Creating gcc-arm-none-eabi x86_64 debian package"
 echo "version: $VER"
-
-# if [ -f "gcc-arm-none-eabi.tar" ]; then
-#   echo "File already exists. Skipping download."
-# else
-#   echo "Downloading..."
-#   curl -C - -fSL -A "Mozilla/4.0" -o gcc-arm-none-eabi.tar. "$URL"
-# fi
-
+echo "url: $URL"
 if [ -f "gcc-arm-none-eabi.tar" ]; then
     read -p "gcc-arm-none-eabi.tar already exists. Do you want to overwrite it? (y/n) " choice
     if [[ $choice != "y" ]]; then

@@ -8,14 +8,6 @@ echo "Creating gcc-riscv-none-elf x86_64 debian package"
 
 FILE_NAME="riscv-none-elf-gcc-linux-x64.tar.gz"
 
-# if [ -f "$FILE_NAME" ]; then
-#   echo "File already exists. Skipping download."
-# else
-#   echo "Downloading..."
-#   DOWNLOAD_URL=$(curl -s https://api.github.com/repos/xpack-dev-tools/riscv-none-elf-gcc-xpack/releases/latest | grep "browser_download_url.*linux-x64.tar.gz" | cut -d : -f 2,3 | tr -d \")
-#   curl -C - -fSL -A "Mozilla/4.0" -o "$FILE_NAME" "$DOWNLOAD_URL"
-# fi
-
 if [-f "$FILE_NAME"]; then
   read -p "$FILE_NAME already exists. Do you want to overwrite it? (y/n) " choice
   if [[ $choice != "y" ]]; then
