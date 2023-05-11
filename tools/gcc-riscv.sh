@@ -33,5 +33,9 @@ popd
 
 echo "export PATH=\"/opt/$origin_name/bin:\$PATH\"" >>~/.bashrc
 source ~/.bashrc
+exec bash
+
+
 echo "riscv-none-elf-gcc moved to /opt and path added to system's PATH."
+riscv-none-elf-gcc --print-multi-lib  
 echo "Done."

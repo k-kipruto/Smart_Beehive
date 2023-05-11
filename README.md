@@ -1,6 +1,5 @@
 # Smart_Beehive
-This is Smart Beehive project that got accepted into 2023 IoT contest by RT-Thread
-
-curl  https://raw.githubusercontent.com/k-kipruto/Smart_Beehive/main/docs/gcc-arm.sh | bash
-
-git submodule add -b  master https://github.com/RT-Thread/rt-thread.git
+This is repository for Smart Beehive project that got accepted into 2023 IoT contest by RT-Thread. I will be posting the project updates here as I progress with the project. You can find me at:
+[Twitter](https://twitter.com/Kipruto_embed)
+[embed-labs.dev](https://embed-labs.dev) 
+[YouTube](https://www.youtube.com/channel/UCwKmbcG0C5prWmuWoGHCuMA)

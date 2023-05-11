@@ -34,5 +34,7 @@ popd
 
 echo "export PATH=\"/opt/$origin_name/bin:\$PATH\"" >>~/.bashrc
 source ~/.bashrc
+exec bash
 echo "gcc-arm-none-eabi moved to /opt and path added to system's PATH."
+arm-none-eabi-gcc --version
 echo "Done."
