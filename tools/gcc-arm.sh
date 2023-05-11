@@ -8,41 +8,38 @@ URL=https://developer.arm.com/-/media/Files/downloads/gnu-rm/${VER}/gcc-arm-none
 
 mkdir .build-gcc-arm
 cd .build-gcc-arm
-echo "Creating gcc-arm-none-eabi x86_64 debian package" 
+echo "Creating gcc-arm-none-eabi x86_64 debian package"
 echo "version: $VER"
 
-echo "Downloading..."
-curl -fSL -A "Mozilla/4.0" -o gcc-arm-none-eabi.tar "$URL"
+# if [ -f "gcc-arm-none-eabi.tar" ]; then
+#   echo "File already exists. Skipping download."
+# else
+#   echo "Downloading..."
+#   curl -C - -fSL -A "Mozilla/4.0" -o gcc-arm-none-eabi.tar. "$URL"
+# fi
+
+if [ -f "gcc-arm-none-eabi.tar" ]; then
+    read -p "gcc-arm-none-eabi.tar already exists. Do you want to overwrite it? (y/n) " choice
+    if [[ $choice != "y" ]]; then
+        echo "Skipping download."
+    fi
+else
+    echo "Downloading..."
+    curl -C - -fSL -A "Mozilla/4.0" -o gcc-arm-none-eabi.tar "$URL"
+fi
+
+origin_name="gcc-arm-none-eabi"
+destination="/opt"
 
 echo "Extracting..."
 mkdir tmp
 pushd tmp
 tar -xf ../gcc-arm-none-eabi.tar
+mv gcc-arm-none-eabi-* "$origin_name"
+sudo mv "$origin_name" "$destination"
 popd
 
-
-# rm gcc-arm-none-eabi.tar
-
-echo "Generating debian package..."
-mkdir gcc-arm-none-eabi
-mkdir gcc-arm-none-eabi/DEBIAN
-mkdir gcc-arm-none-eabi/usr
-echo "Package: gcc-arm-none-eabi"          >  gcc-arm-none-eabi/DEBIAN/control
-echo "Version: $VER"                       >> gcc-arm-none-eabi/DEBIAN/control
-echo "Architecture: amd64"                 >> gcc-arm-none-eabi/DEBIAN/control
-echo "Maintainer: maintainer"              >> gcc-arm-none-eabi/DEBIAN/control
-echo "Description: Arm Embedded toolchain" >> gcc-arm-none-eabi/DEBIAN/control
-mv tmp/gcc-arm-*/* gcc-arm-none-eabi/usr/
-dpkg-deb --build --root-owner-group gcc-arm-none-eabi
-
-# echo "Installing..."
-# echo "requires root access to install the Toolchain"
-# sudo apt install ./gcc-arm-none-eabi.deb -y --allow-downgrades
-
-# mv "gcc-arm-none-eabi.deb" "gcc-arm-none-eabi-${VER}-x86_64.deb"
-# ls -l *.deb
-# echo "Removing temporary files..."
-# rm -r gcc-arm-none-eabi*
-
-# echo "Done."
-
+echo "export PATH=\"/opt/$origin_name/bin:\$PATH\"" >>~/.bashrc
+source ~/.bashrc
+echo "gcc-arm-none-eabi moved to /opt and path added to system's PATH."
+echo "Done."
