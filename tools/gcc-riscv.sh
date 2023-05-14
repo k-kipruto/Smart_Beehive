@@ -1,6 +1,5 @@
 #!/bin/bash
 # https://github.com/xpack-dev-tools/riscv-none-elf-gcc-xpack/releases
-VER=${VER:-'12.2.0-3'}
 
 mkdir .build-gcc-riscv
 cd .build-gcc-riscv
@@ -26,16 +25,14 @@ echo "Extracting..."
 mkdir tmp
 pushd tmp
 tar -xzf "../$FILE_NAME"
-ls
 mv "xpack-riscv-none-elf-gcc"* "$origin_name"
 sudo mv "$origin_name" "$destination"
 popd
 
 echo "export PATH=\"/opt/$origin_name/bin:\$PATH\"" >>~/.bashrc
 source ~/.bashrc
-exec bash
-
 
 echo "riscv-none-elf-gcc moved to /opt and path added to system's PATH."
+# exec bash
 riscv-none-elf-gcc --print-multi-lib  
 echo "Done."
