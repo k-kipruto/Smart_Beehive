@@ -34,5 +34,5 @@ source ~/.bashrc
 
 echo "riscv-none-elf-gcc moved to /opt and path added to system's PATH."
 # exec bash
-riscv-none-elf-gcc --print-multi-lib  
+riscv-none-elf-gcc --print-multi-lib
 echo "Done."

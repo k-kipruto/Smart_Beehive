@@ -10,3 +10,4 @@ This is repository for Smart Beehive project that got accepted into 2023 IoT con
 
 <!-- pushd rt-thread/bsp/stm32/ && cp -r stm32f103-blue-pill libraries tools  ../../../stm32-bluepill  && popd -->
 <!-- suggest to use command scons --dist [--target=xxx] [--project-name=xxx] [--project-path=xxx] -->
+<!-- pushd rt-thread/bsp/stm32/stm32f103-blue-pill/ && scons --dist --project-name=project1-blue-pill && mv ./dist/project1-blue-pill  ../../../../ &&  popd -->
